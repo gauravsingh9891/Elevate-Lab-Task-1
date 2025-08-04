@@ -1,0 +1,73 @@
+-> ER (Entity-Relationship) Diagram for an E-commerce System. It covers the core modules like users, products, orders, payments, and inventory.
+
+# Entities and Attributes:
+=============================
+
+1) User
+**********
+	- UserID (PK)
+	- Name
+	- Email
+	- Password
+	- Phone
+	- Address
+
+2) Product
+************
+	- ProductID (PK)
+	- Name
+	- Description
+	- Price
+	- Category
+	- StockQuantity
+	- ImageURL
+
+3) Order
+**********
+	- OrderID (PK)
+	- UserID (FK)
+	- OrderDate
+	- Status
+	- TotalAmount
+
+4)OrderItem
+************
+	- OrderItemID (PK)
+	- OrderID (FK)
+	- ProductID (FK)
+	- Quantity
+	- UnitPrice
+
+5) Payment
+************
+	- PaymentID (PK)
+	- OrderID (FK)
+	- PaymentDate
+	- Amount
+	- PaymentMethod
+	- PaymentStatus
+
+6) Category
+************
+	- CategoryID (PK)
+	- CategoryName
+
+7) Review
+***********
+	- ReviewID (PK)
+	- UserID (FK)
+	- ProductID (FK)
+	- Rating
+	- Comment
+	- ReviewDate
+
+---------------------------------------------------------------------------------------------------------------
+# Relationships:
+=================
+-> A User can place many Orders.
+-> Each Order can contain many OrderItems.
+-> Each OrderItem is linked to a Product.
+-> Each Order has one Payment.
+-> A Product can belong to one Category.
+-> A User can leave many Reviews for Products.
+-> A Product can have many Reviews from different Users.
