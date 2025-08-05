@@ -1,6 +1,6 @@
 # I have developed a Database Schema & ER Diagram of E-commerce System
 
--> I have User following tools:-
+-> Tool User 
    Tool :- Microsoft SQL Server
    ER-Diagram : SmartDraw Website to draw ER-Diagram
 
