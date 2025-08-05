@@ -14,8 +14,8 @@
 	      - Password
 	      - Phone
 	      - Address
-
-   2) Product
+       
+    2) Product
 	      - ProductID (PK)
 	      - Name
 	      - Description
@@ -24,7 +24,7 @@
 	      - StockQuantity
 	      - ImageURL
 
-  3) Orders
+    3) Orders
 	      - OrderID (PK)
 	      - UserID (FK)
 	      - OrderDate
@@ -32,14 +32,14 @@
 	      - Status
 	      - TotalAmount
 
-  4) OrderItem
+    4) OrderItem
 	      - OrderItemID (PK)
 	      - OrderID (FK)
 	      - ProductID (FK)
 	      - Quantity
 	      - UnitPrice
 
-  5) Payment
+    5) Payment
 	      - PaymentID (PK)
 	      - OrderID (FK)
 	      - PaymentDate
@@ -47,11 +47,11 @@
 	      - PaymentMethod
 	      - PaymentStatus
 
-  6) Category
+    6) Category
 	      - CategoryID (PK)
 	      - CategoryName
 
-  7) Review
+    7) Review
 	      - ReviewID (PK)
 	      - UserID (FK)
 	      - ProductID (FK)
