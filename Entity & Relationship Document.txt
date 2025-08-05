@@ -3,7 +3,7 @@
 # Entities and Attributes:
 =============================
 
-1) User
+1) Users
 **********
 	- UserID (PK)
 	- Name
@@ -22,11 +22,12 @@
 	- StockQuantity
 	- ImageURL
 
-3) Order
+3) Orders
 **********
 	- OrderID (PK)
 	- UserID (FK)
 	- OrderDate
+	- DeliveryDate
 	- Status
 	- TotalAmount
 
@@ -70,4 +71,5 @@
 -> Each Order has one Payment.
 -> A Product can belong to one Category.
 -> A User can leave many Reviews for Products.
+
 -> A Product can have many Reviews from different Users.
