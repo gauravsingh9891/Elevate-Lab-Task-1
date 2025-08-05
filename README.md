@@ -1,8 +1,9 @@
 # I have developed a Database Schema & ER Diagram of E-commerce System
 
--> Tool User 
-   Tool :- Microsoft SQL Server
-   ER-Diagram : SmartDraw Website to draw ER-Diagram
+	Tool Used
+ 	==========
+   	Tool :- Microsoft SQL Server
+   	ER-Diagram : SmartDraw Website to draw ER-Diagram
 
 -> Basically this E-Commerce System containes following Entity(Module) with given set of attributes.
 
