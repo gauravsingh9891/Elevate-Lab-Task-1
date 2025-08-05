@@ -17,7 +17,7 @@ Create Database ECommDB
 Use ECommDB
 
 /*
-	Command to Create "User" Table(Entity). This Table contains following columns(attribute)
+	Command to Create "Users" Table(Entity). This Table contains following columns(attribute)
 		- UserID (PK)
 		- Name
 		- Email
@@ -26,16 +26,21 @@ Use ECommDB
 		- Address
 */
 
-Create Table User
+Create Table Users
 (
  UserId int Primary Key Identity(1,1),
  Name varchar(50) Not Null,
  Email varchar(50),
- Password varchar(20),
- Phone char(10) Not Null,
+ Password varchar(20) Not Null CHECK(LEN(Password)>=6),
+ Phone Varchar(12) Unique Not Null,
  Address varchar(100) Not Null
 )
 
+--Allow  multiple nulls into unique Email column but, if data is enter in it,  it will be unique
+Create Unique Index Ind_Emailid ON Users(Email) Where Email Is Not Null
+
+--Command for View the Table
+Select * from Users
 
 /*
 	Command to Create "Product" Table(Entity). This Table contains following columns(attribute)
@@ -53,28 +58,37 @@ Create Table Product
  ProductId int Primary Key Identity(1010,1),
  Name Varchar(60) Not Null,
  Description Text,
- Price Money Not Null,
- Category Varchar(30),
+ Price Money Check(Price>=0),
+ Category Varchar(30) Unique Not Null,
  ImageURL varchar(Max) Not Null
 )
 
+--Command for View the Table
+Select * from Product
+
 /*
-	Command to Create "Order" Table(Entity). This Table contains following columns(attribute)
+	Command to Create "Orders" Table(Entity). This Table contains following columns(attribute)
 		- OrderID (PK)
 		- UserID (FK)
 		- OrderData
+		- DeliveryDate
 		- Status
 		- TotalAmout
 */
 
-Create Table Order
+Create Table Orders
 (
   OrderId int Primary Key identity(20200,1),
-  UserId int references User(UserID),
+  UserId int references Users(UserID) ON DELETE SET NULL,
   OrderDate Date Default Getdate(),
-  Status varchar(15) Not Null,
-  TotalAmount Money Default 0
+  DeliveryDate Date Not Null,
+  Status varchar(30) Not Null,
+  TotalAmount Money Check(TotalAmount>=0),
+  Check(DeliveryDate>=OrderDate)
 )
+
+--Command for View the Table
+Select * from Orders
 
 /*
 	Command to Create "OrderItem" Table(Entity). This Table contains following columns(attribute)
@@ -88,12 +102,14 @@ Create Table Order
 Create Table OrderItem
 (
   OrderItemId int Primary Key Identity(30300,1),
-  OrderID int references Order(OrderID),
-  ProductID int references  Product(ProductID),
-  Quantity smallint default 0,
-  UnitPrice Money default 0
+  OrderID int references Orders(OrderID) ON DELETE SET NULL,
+  ProductID int references  Product(ProductID) ON DELETE SET NULL,
+  Quantity smallint Check(Quantity>=0),
+  UnitPrice Money Check(UnitPrice>=0)
 )
 
+--Command for View the Table
+Select * from OrderItem
 /*
 	Command to Create "Payment" Table(Entity). This Table contains following columns(attribute)
 		- PaymentID (PK)
@@ -107,12 +123,17 @@ Create Table OrderItem
 Create Table Payment
 (
  PaymentID int Primary Key identity(2100,1),
- OrderId int references Order(OrderId),
- PaymentDate Date Default GetDate() ,
- Amount money default 0,
- PaymentMethod varchar(30) Not Null,
- PaymentStatus varchar(20) Not Null
+ OrderId int references Orders(OrderId) ON DELETE SET NULL,
+ PaymentDate Date,
+ Amount money Check(Amount>=0),
+ PaymentMethod varchar(30),
+ PaymentStatus varchar(20)
 )
+
+--Command for View the Table
+select * from Payment
+
+
 
 /*
 	Command to Create "Category" Table(Entity). This Table contains following columns(attribute)
@@ -125,6 +146,9 @@ Create Table Category
   CategoryId int Primary Key Identity(1,1),
   CategoryName Varchar(40) Not Null
 )
+
+--Command for View the Table
+select * from Category
 
 /*
 	Command to Create "Review" Table(Entity). This Table contains following columns(attribute)
@@ -139,9 +163,12 @@ Create Table Category
 Create Table Review
 (
   ReviewID int Primary Key identity(1,1),
-  UserId int references User(UserId),
-  ProductId int references Product(ProductId),
+  UserId int references Users(UserId) ON DELETE SET NULL,
+  ProductId int references Product(ProductId) ON DELETE SET NULL,
   Rating tinyint,
   Comment Text,
-  ReviewDate Date Default Getdate()
+  ReviewDate Date default GetDate()
 )
+
+--Command for View the Table
+select * from Review
