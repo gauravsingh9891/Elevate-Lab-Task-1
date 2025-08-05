@@ -4,9 +4,10 @@
    Tool :- Microsoft SQL Server
    ER-Diagram : SmartDraw Website to draw ER-Diagram
 
--> Basically this E-Commerce System containes following Entity(Module) with given set of attributes
+-> Basically this E-Commerce System containes following Entity(Module) with given set of attributes.
+
+
     1) Users
-    ==========
 	      - UserID (PK)
 	      - Name
 	      - Email
@@ -15,7 +16,6 @@
 	      - Address
 
    2) Product
-   ============
 	      - ProductID (PK)
 	      - Name
 	      - Description
@@ -25,7 +25,6 @@
 	      - ImageURL
 
   3) Orders
-  ==========
 	      - OrderID (PK)
 	      - UserID (FK)
 	      - OrderDate
@@ -34,7 +33,6 @@
 	      - TotalAmount
 
   4) OrderItem
-  =============
 	      - OrderItemID (PK)
 	      - OrderID (FK)
 	      - ProductID (FK)
@@ -42,7 +40,6 @@
 	      - UnitPrice
 
   5) Payment
-  ============
 	      - PaymentID (PK)
 	      - OrderID (FK)
 	      - PaymentDate
@@ -51,18 +48,16 @@
 	      - PaymentStatus
 
   6) Category
-  ============
 	      - CategoryID (PK)
 	      - CategoryName
 
   7) Review
-  ==========
 	      - ReviewID (PK)
 	      - UserID (FK)
 	      - ProductID (FK)
 	      - Rating
-	- Comment
-	- ReviewDate
+	      - Comment
+	      - ReviewDate
 
 -> I have attached screenshot of every entity schema and along with demo data in.
 
